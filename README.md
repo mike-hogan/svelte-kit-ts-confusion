@@ -1,38 +1,27 @@
-# create-svelte
+## Trying to reproduce a problem
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+The `component` directory contains a svelte-kit shareable component, along with `component/src/routes/index.svelte` that 
+exercises it.  It's a simple pagination component.
 
-## Creating a project
+The `app` directory contains a svelte-kit app that uses this shareable component, and it is run from `app/src/routes/index.svelte`.
 
-If you're seeing this, you've probably already done this step. Congrats!
+Both of these apps build in the usual svelte kit way, so to get it all running:
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+ * cd component
+ * npm install
+ * npm run build
 
-# create a new project in my-app
-npm init svelte@next my-app
-```
+This packages the svelte component into `component/package`.  To run the app
 
-> Note: the `@next` is temporary
+ * cd app
+ * npm install
+ * npm run dev
 
-## Developing
+Browse to localhost:3000 to see the paginator component reuses.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Unable to reproduce the problem
 
-```bash
-npm run dev
+When I did something like this in a larger context, in a mono repo using rushjs, I was unable to use the shared
+component in the app.  So I have failed to reproduce it in this smaller repo.  Too bad.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
-
-```bash
-npm run build
-```
-
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+If/when I figure out the root cause in my larger repo, I will amend this repo to contain the issue, so it can be fixed.
